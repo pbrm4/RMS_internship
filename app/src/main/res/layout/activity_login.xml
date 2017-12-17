@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kjsce.rms.login"
+    android:background="@drawable/login_bg">
+
+
+    <Button
+        android:id="@+id/log_log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_btn"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/log_reg"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        app:srcCompat="@drawable/login_fileds"
+        android:layout_above="@+id/log_log"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/log_userid"
+        android:layout_width="250dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="userid"
+        android:background="@android:color/transparent"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_alignEnd="@+id/log_reg" />
+
+    <EditText
+        android:id="@+id/log_pwd"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="250dp"
+        android:layout_height="44dp"
+        android:background="@android:color/transparent"
+        android:allowUndo="true"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignStart="@+id/log_userid" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/login_info"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/log_reg"
+        android:layout_marginTop="67dp" />
+
+    <Button
+        android:id="@+id/log_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
