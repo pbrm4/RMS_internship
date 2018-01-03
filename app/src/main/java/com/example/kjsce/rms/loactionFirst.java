@@ -51,12 +51,15 @@ public class loactionFirst extends AppCompatActivity {
             @Override
              public void onClick(View v)
             {
-                    String locsend ="19.0730847,72.8998221";
+
+                String locsend ="19.0730847,72.8998221";
                 Toast.makeText(loactionFirst.this,"Place: K.J. Somaiya College Of Engineering" , Toast.LENGTH_LONG).show();
                     Intent gotoProduct = new Intent(loactionFirst.this,products.class);
                     gotoProduct.putExtra("placeName",locsend);
 
                     startActivity(gotoProduct);
+
+
             }
         });
 

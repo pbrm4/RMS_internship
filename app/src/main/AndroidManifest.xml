@@ -46,6 +46,8 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".comparison" />
         <activity android:name=".mobileotp"></activity>
+        <activity android:name=".mobileotp1">
+        </activity>
     </application>
 
 </manifest>

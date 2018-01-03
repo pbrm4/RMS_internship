@@ -1,6 +1,7 @@
 package com.example.kjsce.rms;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-//Making some progress
-public class mobileotp extends AppCompatActivity {
+
+public class mobileotp1 extends AppCompatActivity {
 
     EditText phone,verotp;
     Button otpget,verifyotp;
@@ -42,7 +43,7 @@ public class mobileotp extends AppCompatActivity {
         Toast.makeText(this, "Inside mobileOTP", Toast.LENGTH_SHORT).show();
         String store = getIntent().getStringExtra("store");
         Random rnd = new Random();
-       final  String checkrand = "hellohowisitfinenoweretheonesintheworld";
+        final  String checkrand = "hellohowisitfinenoweretheonesintheworld";
 
         otpget = (Button)findViewById(R.id.otp);
         phone = (EditText)findViewById(R.id.mobile);
@@ -56,14 +57,15 @@ public class mobileotp extends AppCompatActivity {
         otpget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    phonenumber = phone.getText().toString();
-                    phonenumber = "91" +phonenumber;
-                otp = Integer.toString((int)checkrand.charAt(ThreadLocalRandom.current().nextInt(0, 31)))
-                        +Integer.toString((int)checkrand.charAt(ThreadLocalRandom.current().nextInt(0, 31)));
+                phonenumber = phone.getText().toString();
+                phonenumber = "91" +phonenumber;
+              //  otp = Integer.toString((int)checkrand.charAt(ThreadLocalRandom.current().nextInt(0, 31)))
+              //          +Integer.toString((int)checkrand.charAt(ThreadLocalRandom.current().nextInt(0, 31)));
+                otp = "123456";
                 Log.d("otp to be sent",otp);
                 Log.d("number",phonenumber);
 
-                new getotpasap().execute();
+             //   new getotpasap().execute();
 
 
 
@@ -74,11 +76,14 @@ public class mobileotp extends AppCompatActivity {
         verifyotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String typedotp = verotp.getText().toString();
+               /* String typedotp = verotp.getText().toString();
                 if(typedotp.equalsIgnoreCase(otp)){
-                    Toast.makeText(mobileotp.this, "Phone Verified, details will be messaged", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mobileotp1.this, "Phone Verified, details will be messaged", Toast.LENGTH_SHORT).show();
+                }*/
+                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("net.one97.paytm");
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
                 }
-
             }
         });
 
@@ -94,7 +99,7 @@ public class mobileotp extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(mobileotp.this);
+            pDialog = new ProgressDialog(mobileotp1.this);
             pDialog.setMessage("Sending request for OTP");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);

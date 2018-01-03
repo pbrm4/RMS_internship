@@ -105,7 +105,7 @@ public class comparison extends AppCompatActivity {
             @Override
             public void onClick(View v) {
               //  Toast.makeText(comparison.this, "Hellooooo", Toast.LENGTH_SHORT).show();
-                Intent gotobuy = new Intent(comparison.this,mobileotp.class);
+                Intent gotobuy = new Intent(comparison.this,mobileotp1.class);
                 gotobuy.putExtra("store","DMart");
                 startActivity(gotobuy);
             }
