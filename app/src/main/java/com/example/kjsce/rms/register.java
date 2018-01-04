@@ -26,6 +26,7 @@ public class register extends AppCompatActivity {
     String name;
     String emphone;
     String password;
+    String phone;
     JSONParser jsonParser = new JSONParser();
 
     private static String url_add_user = "http://rmsanp.000webhostapp.com/adduser.php";
@@ -38,10 +39,16 @@ public class register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         Button login;
         Button register;
+        Bundle extras = getIntent().getExtras();
+        phone  = extras.getString("phone");
+        Log.d("phone recvd. ",phone);
 
         login = (Button) findViewById(R.id.reg_log);
         inputName = (EditText) findViewById(R.id.reg_name);
         inputPE = (EditText) findViewById(R.id.reg_pe);
+        inputPE.setTextColor(getResources().getColor(R.color.black));
+        inputPE.setText(phone);
+        inputPE.setEnabled(false);
         inputpwd = (EditText) findViewById(R.id.reg_pwd);
         login.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -35,26 +35,25 @@
         android:id="@+id/reg_pe"
         android:layout_width="272dp"
         android:layout_height="37dp"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:hint="Location"
-        android:inputType="textPersonName"
         android:layout_alignBottom="@+id/reg_pwd"
         android:layout_alignStart="@+id/reg_pwd"
-        android:layout_marginBottom="37dp" />
+        android:layout_marginBottom="37dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/reg_pwd"
         android:layout_width="272dp"
         android:layout_height="37dp"
 
+        android:layout_above="@+id/reg_reg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="47dp"
         android:background="@android:color/transparent"
         android:ems="10"
-        android:hint="Location"
-        android:inputType="textPersonName"
-        android:layout_marginBottom="47dp"
-        android:layout_above="@+id/reg_reg"
-        android:layout_centerHorizontal="true" />
+        android:hint="password"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/reg_log"

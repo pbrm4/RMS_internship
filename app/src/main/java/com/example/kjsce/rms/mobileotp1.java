@@ -28,13 +28,17 @@ public class mobileotp1 extends AppCompatActivity {
 
     EditText phone,verotp;
     Button otpget,verifyotp;
-    JSONObject json;
+    JSONObject json1;
     JSONParser jParser = new JSONParser();
     String otp;
     String phonenumber;
+    String phone_tosend;
+    String name;
+    int wheretonext=-1;
     private ProgressDialog pDialog;
 
-    private static String url_otp_get = "https://rmsanp.000webhostapp.com/otptxtlcl.php";
+    //private static String url_otp_get = "https://rmsanp.000webhostapp.com/otptxtlcl.php";4
+    private static String url_otp_get = "https://rmsanp.000webhostapp.com/newuser.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +62,14 @@ public class mobileotp1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 phonenumber = phone.getText().toString();
-                phonenumber = "91" +phonenumber;
-              //  otp = Integer.toString((int)checkrand.charAt(ThreadLocalRandom.current().nextInt(0, 31)))
-              //          +Integer.toString((int)checkrand.charAt(ThreadLocalRandom.current().nextInt(0, 31)));
-                otp = "123456";
+               // phonenumber = "91" +phonenumber;
+                otp = Integer.toString((int)checkrand.charAt(ThreadLocalRandom.current().nextInt(0, 31)))
+                        +Integer.toString((int)checkrand.charAt(ThreadLocalRandom.current().nextInt(0, 31)));
+            //    otp = "123456";
                 Log.d("otp to be sent",otp);
                 Log.d("number",phonenumber);
 
-             //   new getotpasap().execute();
+                new getotpasap().execute();
 
 
 
@@ -80,19 +84,17 @@ public class mobileotp1 extends AppCompatActivity {
                 if(typedotp.equalsIgnoreCase(otp)){
                     Toast.makeText(mobileotp1.this, "Phone Verified, details will be messaged", Toast.LENGTH_SHORT).show();
                 }*/
-                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("net.one97.paytm");
+
+               Intent gotoRegister = new Intent(mobileotp1.this,register.class);
+               startActivity(gotoRegister);
+
+               /* Intent launchIntent = getPackageManager().getLaunchIntentForPackage("net.one97.paytm");
                 if (launchIntent != null) {
                     startActivity(launchIntent);//null pointer check in case package name was not found
-                }
+                }*/
             }
         });
-
-
-
-
     }
-
-
 
     class getotpasap extends AsyncTask<String, String, String> {
 
@@ -100,7 +102,7 @@ public class mobileotp1 extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(mobileotp1.this);
-            pDialog.setMessage("Sending request for OTP");
+            pDialog.setMessage("Pinging DB for user");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
@@ -114,20 +116,29 @@ public class mobileotp1 extends AppCompatActivity {
 
                 params.add(new BasicNameValuePair("phone",phonenumber));
                 params.add(new BasicNameValuePair("otp",otp));
-                Log.d("params",params.toString());
 
-                json = jParser.makeHttpRequest(url_otp_get, "GET", params);
+                json1 = jParser.makeHttpRequest(url_otp_get, "GET", params);
+                Log.d("json: ", json1.toString());
 
-                // check your log for json response
-                Log.d("Details", json.toString());
+                int status = json1.getInt("status");//      getJSONObject("status");
+                if(status == 1){
+                            wheretonext = 1;
+                            phone_tosend = json1.getString("phone");
+                            Log.d("phpne",phone_tosend);
 
-                if (1 == 1) {
-
-                    json.getJSONArray("products");
-
-                }else{
-                    // product with pid not found
                 }
+                else if(status ==2){
+                            wheretonext = 2;
+                            phone_tosend = json1.getString("phone");
+                            name = json1.getJSONObject("name").toString();
+
+                }
+
+                else{
+                            wheretonext = 0;
+                }
+                // check your log for json response
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -140,9 +151,16 @@ public class mobileotp1 extends AppCompatActivity {
         protected void onPostExecute(String file_url) {
             // dismiss the dialog after getting all products
             pDialog.dismiss();
-
-
-
+            if(wheretonext == 1){
+                Intent gotoRegister = new Intent(mobileotp1.this,register.class);
+                gotoRegister.putExtra("phone",phone_tosend);
+                startActivity(gotoRegister);
+            }
+            else if(wheretonext == 2){
+                Intent gotoRegister = new Intent(mobileotp1.this,login.class);
+                gotoRegister.putExtra("phone",phone_tosend);
+                startActivity(gotoRegister);
+            }
         }
     }
 
