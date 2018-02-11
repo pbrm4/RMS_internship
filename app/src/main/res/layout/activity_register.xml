@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kjsce.rms.login"
+    android:background="@drawable/register_bg">
+
+
+    <Button
+        android:id="@+id/reg_reg"
+        android:layout_width="272dp"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/reg_pwd"
+        android:layout_marginBottom="204dp"
+        android:background="@android:color/transparent" />
+
+
+    <EditText
+        android:id="@+id/reg_name"
+        android:layout_width="272dp"
+        android:layout_height="39dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="NAME"
+        android:inputType="textPersonName"
+        android:layout_above="@+id/reg_pe"
+        android:layout_alignStart="@+id/reg_pe" />
+
+    <EditText
+        android:id="@+id/reg_pe"
+        android:layout_width="272dp"
+        android:layout_height="37dp"
+        android:layout_alignBottom="@+id/reg_pwd"
+        android:layout_alignStart="@+id/reg_pwd"
+        android:layout_marginBottom="37dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/reg_pwd"
+        android:layout_width="272dp"
+        android:layout_height="37dp"
+
+        android:layout_above="@+id/reg_reg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="47dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/reg_log"
+        android:layout_width="272dp"
+        android:layout_height="20dp"
+
+        android:background="@android:color/transparent"
+
+        android:layout_marginTop="54dp"
+        android:layout_alignTop="@+id/reg_reg"
+        android:layout_alignStart="@+id/reg_reg" />
+
+</RelativeLayout>
