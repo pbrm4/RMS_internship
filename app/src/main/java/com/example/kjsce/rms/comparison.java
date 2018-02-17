@@ -94,6 +94,7 @@ public class comparison extends AppCompatActivity {
         fetchList= new ArrayList<String>();
 
         fetchList=  getIntent().getStringArrayListExtra("productlist");
+        Log.d("Ftech;list content",fetchList.toString());
         loc = getIntent().getStringExtra("loc");
         String[] parts = loc.split(",");
         lat = Double.parseDouble(parts[0]);
@@ -158,15 +159,17 @@ public class comparison extends AppCompatActivity {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 List<NameValuePair> params1 = new ArrayList<NameValuePair>();
 
+
+
                 params.add(new BasicNameValuePair("lat",lat.toString()));
                 params.add(new BasicNameValuePair("lon",lon.toString()));
-
+                        allstores = jParser.makeHttpRequest(url_all_stores,"GET",params);
                 json = jParser.makeHttpRequest(url_all_products_prices, "GET", params1);
-                allstores = jParser.makeHttpRequest(url_all_stores,"GET",params);
+
 
                 // check your log for json response
                 Log.d("Single Product Details", json.toString());
-                Log.d("ALl retail stores",allstores.toString());
+               Log.d("ALl retail stores",allstores.toString());
 
                 if (success == 1) {
 
@@ -207,8 +210,8 @@ public class comparison extends AppCompatActivity {
 
                         JSONArray product = productroot.getJSONArray(searchequery.get(i));
                         Log.d("Product root "+i+"  :" ,product.toString());
-                        JSONObject productname = product.getJSONObject(1);
-                        Log.d("Prdct nm nsd prdct:",productname.toString());
+                        JSONObject productname = product.getJSONObject(0);
+                        Log.d("product ka naam:",productname.toString());
                         productlist.put(searchequery.get(i),product);
                     }
 
@@ -273,8 +276,8 @@ public class comparison extends AppCompatActivity {
                             String toprint = fetchList.get(j)+"\n";
                             String quer = fetchList.get(j)+storename.get(i);
 
-                            String textmeikyahai = productlist.get(quer)/*.get(0)*/.toString();
-                            Log.d("checkmystring ",textmeikyahai);
+                           // String textmeikyahai = productlist.get(quer)/*.get(0)*/.toString();
+                           // Log.d("checkmystring ",textmeikyahai);
                             String textmeikyahai2="";
 
                             try {
